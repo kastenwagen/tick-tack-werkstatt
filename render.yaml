@@ -1,4 +1,6 @@
-# Render Blueprint: statische Seite aus ./website mit Sicherheits-Headern
+# Render Blueprint: statische Seite aus ./website mit Sicherheits-Headern.
+# Die genaue Skript-Prüfung (Hash) steht als CSP im <head> der Seite; dieser Header ergänzt
+# frame-ancestors usw. Beide Regeln gelten gleichzeitig, also bleibt der Hash verbindlich.
 services:
   - type: web
     name: tick-tack-werkstatt
@@ -9,7 +11,7 @@ services:
     headers:
       - path: /*
         name: Content-Security-Policy
-        value: "default-src 'none'; script-src 'sha256-uE7jRYMaZDMRo7fIMMIr8fk6VLncXQnPOXL8Zrqu1r4='; style-src 'unsafe-inline'; img-src data:; font-src data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+        value: "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
       - path: /*
         name: Strict-Transport-Security
         value: "max-age=63072000; includeSubDomains"
